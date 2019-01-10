@@ -31,7 +31,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon id="{{element.empid}}">edit</mat-icon>
+          <mat-icon id="{{element.empid}}" class="pointer" (click)="onEdit($event)">edit</mat-icon>
+          <mat-icon id="{{element.empid}}" class="pointer" (click)="onDelete($event)">delete</mat-icon>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -11,7 +11,9 @@ import {
   MatIconModule,
   MatTableModule,
   MatCardModule,
-  MatSortModule
+  MatSortModule,
+  MatDialogModule,
+  MatInputModule
 } from "@angular/material";
 import { LayoutModule } from "@angular/cdk/layout";
 @NgModule({
@@ -30,6 +32,8 @@ import { LayoutModule } from "@angular/cdk/layout";
     MatTableModule,
     MatCardModule,
     MatSortModule,
+    MatDialogModule,
+    MatInputModule
   ],
   exports: [
     CommonModule,
@@ -44,7 +48,9 @@ import { LayoutModule } from "@angular/cdk/layout";
     MatListModule,
     MatTableModule,
     MatCardModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    MatInputModule
   ]
 })
 export class MaterialComponentModule {}

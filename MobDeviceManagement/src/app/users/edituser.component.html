@@ -1,0 +1,22 @@
+<div *ngIf="data.isedit">
+  <h1 mat-dialog-title>Edit User</h1>
+  <div mat-dialog-content>
+    <mat-form-field> <input matInput [(ngModel)]="data.user.name" placeholder="User Name" /> </mat-form-field>
+    <mat-form-field> <input matInput [(ngModel)]="data.user.email" placeholder="Email" /> </mat-form-field>
+    <mat-form-field> <input matInput [(ngModel)]="data.user.phonenumber" placeholder="Phone Number" /> </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.user" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+<div *ngIf="!data.isedit">
+  <div mat-dialog-content>
+    <h4>Are you sure ?</h4>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+

@@ -6,9 +6,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialComponentModule } from "./shared/material-component/material-component.module";
 import { NavComponent } from "./nav/nav.component";
 import { NavModule } from "./nav/nav.module";
-import { UsersComponent } from "./users/users.component";
+import { FormsModule } from "@angular/forms";
+import { UsersComponent, EdituserComponent } from "./users/users.component";
 import { DevicesComponent } from "./devices/devices.component";
 import { AllocationsComponent } from "./allocations/allocations.component";
+
 
 @NgModule({
   declarations: [
@@ -16,14 +18,17 @@ import { AllocationsComponent } from "./allocations/allocations.component";
     NavComponent,
     UsersComponent,
     DevicesComponent,
-    AllocationsComponent
+    AllocationsComponent,
+    EdituserComponent
   ],
+  entryComponents: [EdituserComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialComponentModule,
-    NavModule
+    NavModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
