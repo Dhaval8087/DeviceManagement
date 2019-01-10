@@ -1,7 +1,9 @@
 .sidenav-container {
   height: 100%;
 }
-
+.usercard {
+  margin:10px 5px 10px 10px;
+ }
 .sidenav {
   width: 200px;
 }
@@ -14,4 +16,11 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.mat-card-image{
+
+  width: 100px;
+  align-content: center;
+  text-align: center;
+  margin: 30px 20px 20px 20px !important;
 }
