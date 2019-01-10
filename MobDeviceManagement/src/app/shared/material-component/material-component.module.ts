@@ -13,7 +13,8 @@ import {
   MatCardModule,
   MatSortModule,
   MatDialogModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 import { LayoutModule } from "@angular/cdk/layout";
 @NgModule({
@@ -33,7 +34,8 @@ import { LayoutModule } from "@angular/cdk/layout";
     MatCardModule,
     MatSortModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { LayoutModule } from "@angular/cdk/layout";
     MatCardModule,
     MatSortModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialComponentModule {}

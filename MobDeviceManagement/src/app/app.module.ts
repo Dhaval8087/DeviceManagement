@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -10,7 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { UsersComponent, EdituserComponent } from "./users/users.component";
 import { DevicesComponent } from "./devices/devices.component";
 import { AllocationsComponent } from "./allocations/allocations.component";
-
+import { SpinnerComponent } from "./common/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -19,16 +20,18 @@ import { AllocationsComponent } from "./allocations/allocations.component";
     UsersComponent,
     DevicesComponent,
     AllocationsComponent,
-    EdituserComponent
+    EdituserComponent,
+    SpinnerComponent
   ],
-  entryComponents: [EdituserComponent],
+  entryComponents: [EdituserComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialComponentModule,
     NavModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

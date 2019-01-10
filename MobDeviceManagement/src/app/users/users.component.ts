@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, Inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Inject,
+  AfterViewInit
+} from "@angular/core";
 import { User } from "../model/user";
 import {
   MatTableDataSource,
@@ -7,50 +13,45 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material";
+
+import { UserService } from "./user.service";
+import { Observable } from "rxjs";
+import { SpinnerComponent } from "../common/spinner/spinner.component";
 @Component({
   selector: "app-users",
   templateUrl: "./users.component.html",
   styleUrls: ["./users.component.css"]
 })
-export class UsersComponent implements OnInit {
-  ELEMENT_DATA: User[] = [
-    {
-      empid: "1",
-      name: "Name 1",
-      email: "name1@name.com",
-      phonenumber: "9898989898",
-      userid: "123456789"
-    },
-    {
-      empid: "2",
-      name: "Name 2",
-      email: "name2@name.com",
-      phonenumber: "999999999",
-      userid: "123456789"
-    },
-    {
-      empid: "3",
-      name: "Name 1",
-      email: "name1@name.com",
-      phonenumber: "9898989898",
-      userid: "123456789"
-    },
-    {
-      empid: "4",
-      name: "Name 1",
-      email: "name1@name.com",
-      phonenumber: "9898989898",
-      userid: "123456789"
-    }
-  ];
+export class UsersComponent implements OnInit, AfterViewInit {
+  ELEMENT_DATA: User[] = [];
   displayedColumns = ["empid", "name", "email", "phonenumber", "action"];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-  constructor(public dialog: MatDialog) {}
+  dataSource;
+  errorMessage;
+  isloading: false;
+  dialogRef: MatDialogRef<SpinnerComponent>;
+  constructor(public dialog: MatDialog, private userservice: UserService) {}
 
   @ViewChild(MatSort) sort: MatSort;
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    setTimeout(() => {
+      this.dialogRef = this.dialog.open(SpinnerComponent, {
+        panelClass: "transparent",
+        disableClose: true
+      });
+    });
+    this.getUsers();
   }
+  getUsers() {
+    this.userservice.getUsers().subscribe(
+      (users: any) => {
+        this.dataSource = new MatTableDataSource(users.users);
+        this.dataSource.sort = this.sort;
+        this.dialogRef.close();
+      },
+      error => (this.errorMessage = <any>error)
+    );
+  }
+
   onEdit(event) {
     const findUser = Object.assign(
       {},

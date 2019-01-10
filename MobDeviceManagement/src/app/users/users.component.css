@@ -1,6 +1,8 @@
 table {
   width: 98%;
   margin: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 .usercard {
   height: 100%;
@@ -20,3 +22,9 @@ h1 {
 .deleteicon {
   color: #e91e63;
 }
+.transparent .mat-dialog-container {
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.0);
+}
+
+
