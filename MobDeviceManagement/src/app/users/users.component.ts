@@ -18,6 +18,7 @@ import { UserService } from "./user.service";
 import { Observable } from "rxjs";
 import { SpinnerComponent } from "../common/spinner/spinner.component";
 import { ToastrService } from "../common/services/toastr.service";
+import { AdduserComponent } from "./adduser.component";
 @Component({
   selector: "app-users",
   templateUrl: "./users.component.html",
@@ -91,6 +92,28 @@ export class UsersComponent implements OnInit {
       }
     });
   }
+  onAddUser() {
+    const user: User = { name: "", email: "", phonenumber: "" };
+    const dialogRef = this.dialog.open(AdduserComponent, {
+      width: "250px",
+      data: user
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        result.empid = this.guidGenerator();
+        this.dataSource.data.push(result);
+         this.dataSource = new MatTableDataSource(this.dataSource.data);
+         this.toastr.success("Added!!");
+      }
+    });
+  }
+   guidGenerator() {
+    const S4 = function() {
+       // tslint:disable-next-line:no-bitwise
+       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
 }
 @Component({
   // tslint:disable-next-line:component-selector

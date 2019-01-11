@@ -5,11 +5,13 @@ import { UsersComponent } from "../users/users.component";
 import { DevicesComponent } from "../devices/devices.component";
 import { AllocationsComponent } from "../allocations/allocations.component";
 import { Route } from "@angular/compiler/src/core";
+import { DashboardComponent } from "../dashboard/dashboard.component";
 
 const routs = [
   { path: "users", component: UsersComponent },
   { path: "devices", component: DevicesComponent },
-  { path: "allocations", component: AllocationsComponent }
+  { path: "allocations", component: AllocationsComponent },
+  { path: "", component: DashboardComponent }
 ];
 @NgModule({
   declarations: [],

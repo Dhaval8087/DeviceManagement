@@ -1,7 +1,7 @@
 export interface User {
-  userid: string;
+  userid?: string;
   name: string;
-  empid: string;
+  empid?: string;
   email: string;
   phonenumber: string;
 }

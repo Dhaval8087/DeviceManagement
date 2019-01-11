@@ -1,0 +1,19 @@
+<form class="example-form" #form="ngForm" novalidate >
+    <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="User Name" name="name" [(ngModel)]="data.name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email"  [formControl]="emailFormControl" type="email" name="form8"  [(ngModel)]="data.email" />
+            <mat-error *ngIf="emailFormControl.invalid">{{getEmailErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Phone Number" name="phone" [(ngModel)]="data.phonenumber">
+            </mat-form-field>
+      </div>
+      <div mat-dialog-actions>
+          <button mat-button (click)="onNoClick()">Cancel</button>
+          <button type="button" mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="userForm.invalid">Save</button>
+        </div>
+</form>
+
