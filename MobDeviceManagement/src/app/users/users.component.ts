@@ -17,19 +17,24 @@ import {
 import { UserService } from "./user.service";
 import { Observable } from "rxjs";
 import { SpinnerComponent } from "../common/spinner/spinner.component";
+import { ToastrService } from "../common/services/toastr.service";
 @Component({
   selector: "app-users",
   templateUrl: "./users.component.html",
   styleUrls: ["./users.component.css"]
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent implements OnInit {
   ELEMENT_DATA: User[] = [];
   displayedColumns = ["empid", "name", "email", "phonenumber", "action"];
   dataSource;
   errorMessage;
   isloading: false;
   dialogRef: MatDialogRef<SpinnerComponent>;
-  constructor(public dialog: MatDialog, private userservice: UserService) {}
+  constructor(
+    public dialog: MatDialog,
+    private userservice: UserService,
+    private toastr: ToastrService
+  ) {}
 
   @ViewChild(MatSort) sort: MatSort;
   ngOnInit() {
@@ -69,6 +74,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
         );
         this.dataSource.data[index] = result;
         this.dataSource = new MatTableDataSource(this.dataSource.data);
+        this.toastr.success("Updated !!");
       }
     });
   }
