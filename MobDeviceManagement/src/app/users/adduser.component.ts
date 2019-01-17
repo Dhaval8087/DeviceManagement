@@ -7,6 +7,8 @@ import { FormControl, Validators, FormGroup } from "@angular/forms";
   templateUrl: "./adduser.component.html",
   styleUrls: ["./adduser.component.css"]
 })
+
+
 export class AdduserComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AdduserComponent>,
