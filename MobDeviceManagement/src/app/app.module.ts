@@ -14,7 +14,8 @@ import { AllocationsComponent } from "./allocations/allocations.component";
 import { SpinnerComponent } from "./common/spinner/spinner.component";
 import { AdduserComponent } from "./users/adduser.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-
+import { TOASTR_TOKEN, IToastr } from "./common/services/toastr.service";
+// declare let toastr: IToastr;
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,9 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     HttpClientModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" })
   ],
-  providers: [],
+  providers: [
+    // { provide: TOASTR_TOKEN, useValue: toastr }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

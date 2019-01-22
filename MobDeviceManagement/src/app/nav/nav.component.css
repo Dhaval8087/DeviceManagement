@@ -2,8 +2,8 @@
   height: 100%;
 }
 .usercard {
-  margin:10px 5px 10px 10px;
- }
+  margin: 10px 5px 10px 10px;
+}
 .sidenav {
   width: 200px;
 }
@@ -17,18 +17,19 @@
   top: 0;
   z-index: 1;
 }
-.mat-card-image{
-
+.mat-card-image {
   width: 100px;
   align-content: center;
   text-align: center;
   margin: 30px 20px 20px 20px !important;
 }
 .mat-nav-list a.active {
-  background:#F97924
+  background: #f97924;
 }
-.logo{
- height: 65px;
- margin: 38px 10px 20px 10px;
-
+.logo {
+  height: 65px;
+  margin: 38px 10px 20px 10px;
+}
+.fill-space {
+  flex: 1 1 auto !important;
 }

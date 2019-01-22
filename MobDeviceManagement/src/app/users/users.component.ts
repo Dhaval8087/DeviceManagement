@@ -17,8 +17,9 @@ import {
 import { UserService } from "./user.service";
 import { Observable } from "rxjs";
 import { SpinnerComponent } from "../common/spinner/spinner.component";
-import { ToastrService } from "../common/services/toastr.service";
+
 import { AdduserComponent } from "./adduser.component";
+import { TOASTR_TOKEN, IToastr } from "../common/services/toastr.service";
 @Component({
   selector: "app-users",
   templateUrl: "./users.component.html",
@@ -34,7 +35,7 @@ export class UsersComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private userservice: UserService,
-    private toastr: ToastrService
+    @Inject(TOASTR_TOKEN) private toastr: IToastr
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -44,7 +45,7 @@ export class UsersComponent implements OnInit {
         panelClass: "transparent",
         disableClose: true
       });
-    });
+    }, 0);
     this.getUsers();
   }
   getUsers() {
@@ -102,18 +103,31 @@ export class UsersComponent implements OnInit {
       if (result) {
         result.empid = this.guidGenerator();
         this.dataSource.data.push(result);
-         this.dataSource = new MatTableDataSource(this.dataSource.data);
-         this.toastr.success("Added!!");
+        this.dataSource = new MatTableDataSource(this.dataSource.data);
+        this.toastr.success("Added!!");
       }
     });
   }
-   guidGenerator() {
+  guidGenerator() {
     const S4 = function() {
-       // tslint:disable-next-line:no-bitwise
-       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+      // tslint:disable-next-line:no-bitwise
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-}
+    return (
+      S4() +
+      S4() +
+      "-" +
+      S4() +
+      "-" +
+      S4() +
+      "-" +
+      S4() +
+      "-" +
+      S4() +
+      S4() +
+      S4()
+    );
+  }
 }
 @Component({
   // tslint:disable-next-line:component-selector

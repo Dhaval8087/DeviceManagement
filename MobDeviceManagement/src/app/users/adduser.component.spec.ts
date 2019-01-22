@@ -8,9 +8,8 @@ describe("AdduserComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdduserComponent ]
-    })
-    .compileComponents();
+      declarations: [AdduserComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +19,6 @@ describe("AdduserComponent", () => {
   });
 
   it("should create", () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeTruthy(() => {});
   });
 });

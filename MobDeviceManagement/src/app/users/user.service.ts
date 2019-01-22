@@ -11,9 +11,7 @@ export class UserService {
   getUsers(): Observable<any> {
     const res = this.http.get(this.hostUrl);
     return this.http.get(this.hostUrl).pipe(
-      tap(data => {
-
-      }),
+      tap(data => {}),
       catchError(this.handleError)
     );
   }
