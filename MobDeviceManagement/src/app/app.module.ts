@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -14,7 +14,7 @@ import { AllocationsComponent } from "./allocations/allocations.component";
 import { SpinnerComponent } from "./common/spinner/spinner.component";
 import { AdduserComponent } from "./users/adduser.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { TOASTR_TOKEN, IToastr } from "./common/services/toastr.service";
+import { AuthInterceptor } from "./core/auth.interceptor";
 // declare let toastr: IToastr;
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ import { TOASTR_TOKEN, IToastr } from "./common/services/toastr.service";
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" })
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
     // { provide: TOASTR_TOKEN, useValue: toastr }
   ],
   bootstrap: [AppComponent]

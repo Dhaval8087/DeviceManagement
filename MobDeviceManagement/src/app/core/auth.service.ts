@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { UserManager, User, WebStorageStateStore } from "oidc-client";
+import { UserManager, User, WebStorageStateStore, Log } from "oidc-client";
 import { Constants } from "../Constants";
 @Injectable({ providedIn: "root" })
 export class AuthService {
   private userManager: UserManager;
   private user: User;
-  constructor(private httpClient: HttpClient) {
+  constructor() {
+    Log.logger = console;
     const config = {
       authority: Constants.stsAuthority,
       client_id: Constants.clientId,
@@ -24,6 +25,12 @@ export class AuthService {
       if (user && !user.expired) {
         this.user = user;
       }
+    });
+    // once slient referesh happen need to updated the user latest token
+    this.userManager.events.addUserLoaded(args => {
+      this.userManager.getUser().then(user => {
+        this.user = user;
+      });
     });
   }
   login(): Promise<any> {

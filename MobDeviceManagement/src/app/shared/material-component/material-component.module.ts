@@ -15,7 +15,8 @@ import {
   MatDialogModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatSelectModule} from "@angular/material";
+  MatSelectModule,
+  MatSnackBarModule} from "@angular/material";
 import { LayoutModule } from "@angular/cdk/layout";
 @NgModule({
   declarations: [],
@@ -36,7 +37,8 @@ import { LayoutModule } from "@angular/cdk/layout";
     MatDialogModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
@@ -55,7 +57,8 @@ import { LayoutModule } from "@angular/cdk/layout";
     MatDialogModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialComponentModule {}

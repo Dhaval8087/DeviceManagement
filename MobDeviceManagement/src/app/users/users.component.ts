@@ -11,7 +11,9 @@ import {
   MatSort,
   MatDialog,
   MatDialogRef,
-  MAT_DIALOG_DATA
+  MAT_DIALOG_DATA,
+  MatSnackBar,
+  MatSnackBarVerticalPosition
 } from "@angular/material";
 
 import { UserService } from "./user.service";
@@ -35,7 +37,8 @@ export class UsersComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private userservice: UserService,
-    @Inject(TOASTR_TOKEN) private toastr: IToastr
+    @Inject(TOASTR_TOKEN) private toastr: IToastr,
+    private snackbar: MatSnackBar
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -55,7 +58,14 @@ export class UsersComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dialogRef.close();
       },
-      error => (this.errorMessage = <any>error)
+      error => {
+        this.snackbar.open(error, "Close", {
+          duration: 5000,
+          verticalPosition: "top",
+          panelClass: ["red-snackbar"]
+        });
+        this.dialogRef.close();
+      }
     );
   }
 
