@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { AuthService } from "../core/auth.service";
 import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-nav",
@@ -11,6 +12,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./nav.component.css"]
 })
 export class NavComponent implements OnInit {
+  title = "";
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
@@ -18,7 +20,8 @@ export class NavComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
   ngOnInit() {
     if (window.location.href.indexOf("?postLogout=true") > 0) {
@@ -30,6 +33,13 @@ export class NavComponent implements OnInit {
         this.router.navigateByUrl(url);
       });
     }
+
+    this.translate.stream(["nav.title"]).subscribe(translation => {
+      this.title = translation["nav.title"];
+    });
+  }
+  useLanguage(language: string) {
+    this.translate.use(language);
   }
   login() {
     this.authService.login();

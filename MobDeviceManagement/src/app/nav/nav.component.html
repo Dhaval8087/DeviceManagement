@@ -1,13 +1,27 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
-    <mat-toolbar><a [routerLink]="['/']"><img src="../../assets/images/icon.png" alt="logo" class="logo"/></a> </mat-toolbar>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar
+      ><a [routerLink]="['/']"
+        ><img src="../../assets/images/icon.png" alt="logo" class="logo"
+      /></a>
+    </mat-toolbar>
     <mat-nav-list *ngIf="isLoggedIn()">
-      <a mat-list-item [routerLink]="['/users']" routerLinkActive="active">Users</a>
-      <a mat-list-item [routerLink]="['/devices']" routerLinkActive="active">Devices</a>
-      <a mat-list-item [routerLink]="['/allocations']" routerLinkActive="active">Allocations</a>
+      <a mat-list-item [routerLink]="['/users']" routerLinkActive="active"
+        >Users</a
+      >
+      <a mat-list-item [routerLink]="['/devices']" routerLinkActive="active"
+        >Devices</a
+      >
+      <a mat-list-item [routerLink]="['/allocations']" routerLinkActive="active"
+        >Allocations</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -17,13 +31,20 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="(isHandset$ | async)"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Device Management System</span>
-      <span class="fill-space"></span>
-      <button *ngIf="!isLoggedIn()" mat-button (click)="login()" >Login</button>
-      <button *ngIf="isLoggedIn()" mat-button (click)="logout()" >Logout</button>
+      <!-- <span>{{ "nav.title" | translate }}</span> -->
+      <!--  <span translate="nav.title"></span> -->
+      <!--<span translate [translateParams]="{ name: 'Dhaval' }">nav.title</span> -->
+      <!--<span>{{ "nav.title" | translate: { name: "Dhaval" } }}</span> -->
+      <span>{{ title }}</span> <span class="fill-space"></span>
+
+      <span class="flag-icon flag-icon-us " (click)="useLanguage('en')"></span>
+      <span class="flag-icon flag-icon-de " (click)="useLanguage('de')"></span>
+      <button *ngIf="!isLoggedIn()" mat-button (click)="login()">Login</button>
+      <button *ngIf="isLoggedIn()" mat-button (click)="logout()">Logout</button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

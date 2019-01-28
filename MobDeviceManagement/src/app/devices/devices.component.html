@@ -1,3 +1,6 @@
-<p>
-  devices works!
-</p>
+<p>{{ title }}</p>
+<input #project />
+<ul>
+  <li *ngFor="let item of projects">{{ item.name }}</li>
+</ul>
+<button (click)="onTestClick(project.value)">Test Case</button>

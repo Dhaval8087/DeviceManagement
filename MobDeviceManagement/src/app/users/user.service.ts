@@ -22,7 +22,6 @@ export class UserService {
     );
   }
   getProjects(): Observable<any> {
-    const res = this.http.get(this.hostUrl);
     return this.http.get(`${Constants.apiRoot}/projects`).pipe(
       tap(data => {}),
       catchError(this.handleError)

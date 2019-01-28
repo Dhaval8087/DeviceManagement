@@ -1,6 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgModule, TRANSLATIONS } from "@angular/core";
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient
+} from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -15,6 +19,10 @@ import { SpinnerComponent } from "./common/spinner/spinner.component";
 import { AdduserComponent } from "./users/adduser.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AuthInterceptor } from "./core/auth.interceptor";
+
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+
 // declare let toastr: IToastr;
 @NgModule({
   declarations: [
@@ -37,7 +45,14 @@ import { AuthInterceptor } from "./core/auth.interceptor";
     NavModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" })
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
@@ -46,3 +61,8 @@ import { AuthInterceptor } from "./core/auth.interceptor";
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
